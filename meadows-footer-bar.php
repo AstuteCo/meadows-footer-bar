@@ -1,31 +1,87 @@
 <?php
 
 /**
-
  * Plugin Name:   Meadows Footer Bar
-
  * Description:   Contact options that appear as a bar at the bottom of pages.
-
  * Version:           0.1.0
-
  * Requires at least: 5.9.3
-
  * Requires PHP:  7.4
-
  * Author:            Astute Communications
- 
  * Author URI:        https://astute.co
-
  * License:           MIT
-
  * Text Domain:       meadows-footer-bar
-
  */
 
-function your_function() {
-    echo '<span>This is inserted at the bottom</span>';
+// RENDER FOOTER BAR
+
+function show_meadows_bar() {
+
+    $show_bar = get_field('show_bar', 'option');
+    $background_color = get_field('bar_background_color', 'option');
+    $text_color = get_field('bar_text_color', 'option');
+
+
+    // if ($show_bar) {
+    if (true) {
+        echo '<div class="footer-bar-container">';
+        echo '<div class="footer-bar-inner" 
+            style="
+            background-color: ' . $background_color . ';
+            color: ' . $text_color . ';
+            ">';
+
+        if( have_rows('bar_items','option') ):
+
+            while( have_rows('bar_items','option') ) : the_row();
+
+                $show_item = get_sub_field('show_item');
+                $is_chat = get_sub_field('is_chat');
+                $item_icon = get_sub_field('item_icon');
+                $item_text = get_sub_field('item_text');
+                $item_url = get_sub_field('item_url');
+
+                // if ($show_item) {
+                if (true) {
+                    echo '<a href="' . $item_url . '">';
+                    echo '<div class="footer-bar-item">';
+                    echo '<span class="dashicons dashicons-' . $item_icon . '"></span>';
+                    echo '<div style="text-align: center; padding: 0 0.25rem;">' . $item_text . '</div>';
+                    echo '</div>';
+                    echo '</a>';
+                }
+
+            endwhile;
+
+        else :
+            echo 'There are no items to display. Please turn off the Footer Contact bar.';
+        endif;
+
+        echo '</div>';
+        echo '</div>';
+    }
+
 }
-add_action( 'wp_footer', 'your_function' );
+add_action( 'wp_footer', 'show_meadows_bar' );
+
+// FOOTER BAR CSS
+
+add_action('init', 'footer_bar_styles');
+function footer_bar_styles() {
+    wp_register_style( 'new_style', plugins_url('./meadows-footer-bar.css', __FILE__), false, '1.0.0', 'all');
+}
+
+add_action('wp_enqueue_scripts', 'footer_bar_styles_enqueue');
+function footer_bar_styles_enqueue(){
+
+   wp_enqueue_style( 'new_style' );
+}
+
+// ENABLE DASHICONS
+
+function meadows_load_dashicons(){
+    wp_enqueue_style('dashicons');
+}
+add_action('wp_enqueue_scripts', 'meadows_load_dashicons');
 
  // ACF FIELDS AND OPTIONS PAGE
 
@@ -113,7 +169,7 @@ if( function_exists('acf_add_local_field_group') ):
                 ),
                 'collapsed' => 'field_6310aff5fecb7',
                 'min' => 0,
-                'max' => 0,
+                'max' => 4,
                 'layout' => 'block',
                 'button_label' => '',
                 'sub_fields' => array(
@@ -132,6 +188,25 @@ if( function_exists('acf_add_local_field_group') ):
                         ),
                         'message' => '',
                         'default_value' => 1,
+                        'ui' => 0,
+                        'ui_on_text' => '',
+                        'ui_off_text' => '',
+                    ),
+                    array(
+                        'key' => 'field_6311001893e76',
+                        'label' => 'Is Chat?',
+                        'name' => 'is_chat',
+                        'type' => 'true_false',
+                        'instructions' => 'Chat behaves a little differently from the others. So please check this box to indicate if this item is the live chat.',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'message' => '',
+                        'default_value' => 0,
                         'ui' => 0,
                         'ui_on_text' => '',
                         'ui_off_text' => '',
