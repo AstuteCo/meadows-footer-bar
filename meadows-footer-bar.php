@@ -43,7 +43,7 @@ function show_meadows_bar() {
                 // if ($show_item) {
                 if (true) {
                     echo '<a href="' . $item_url . '">';
-                    echo '<div class="footer-bar-item">';
+                    echo '<div class="footer-bar-item">'; // If is chat, add class here
                     echo '<span class="dashicons dashicons-' . $item_icon . '"></span>';
                     echo '<div style="text-align: center; padding: 0 0.25rem;">' . $item_text . '</div>';
                     echo '</div>';
