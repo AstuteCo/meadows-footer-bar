@@ -3,7 +3,7 @@
 /**
  * Plugin Name:   Meadows Footer Bar
  * Description:   Contact options that appear as a bar at the bottom of pages.
- * Version:           0.1.0
+ * Version:           0.1.3
  * Requires at least: 5.9.3
  * Requires PHP:  7.4
  * Author:            Astute Communications
@@ -17,12 +17,12 @@
 function show_meadows_bar() {
 
     $show_bar = get_field('show_bar', 'option');
+    $show_close_button = get_field('show_close_button', 'option');
     $background_color = get_field('bar_background_color', 'option');
     $text_color = get_field('bar_text_color', 'option');
 
 
-    // if ($show_bar) {
-    if (true) {
+    if ($show_bar == 'yes') {
         echo '<div class="footer-bar-container">';
         echo '<div class="footer-bar-inner" 
             style="
@@ -40,10 +40,14 @@ function show_meadows_bar() {
                 $item_text = get_sub_field('item_text');
                 $item_url = get_sub_field('item_url');
 
-                // if ($show_item) {
-                if (true) {
-                    echo '<a href="' . $item_url . '">';
-                    echo '<div class="footer-bar-item">'; // If is chat, add class here
+                if ($show_item == 'yes') {
+                    if ($is_chat == 'yes') {
+                        echo '<a title="' . $item_text . '" onclick="parent.IMIChatInit.chatswitchicon()" id="footer-live-chat">';
+                    }
+                    else {
+                        echo '<a href="' . $item_url . '" title="' . $item_text . '">';
+                    }
+                    echo '<div class="footer-bar-item">';
                     echo '<span class="dashicons dashicons-' . $item_icon . '"></span>';
                     echo '<div style="text-align: center; padding: 0 0.25rem;">' . $item_text . '</div>';
                     echo '</div>';
@@ -56,6 +60,10 @@ function show_meadows_bar() {
             echo 'There are no items to display. Please turn off the Footer Contact bar.';
         endif;
 
+        if ($show_close_button == 'yes') {
+            echo '<a title="Close Footer Notification Bar" class="footer-bar-close" onclick="this.parentNode.parentNode.remove()"><span class="dashicons dashicons-no"></span></a>';
+        }
+
         echo '</div>';
         echo '</div>';
     }
@@ -67,7 +75,7 @@ add_action( 'wp_footer', 'show_meadows_bar' );
 
 add_action('init', 'footer_bar_styles');
 function footer_bar_styles() {
-    wp_register_style( 'new_style', plugins_url('./meadows-footer-bar.css', __FILE__), false, '1.0.0', 'all');
+    wp_register_style( 'new_style', plugins_url('./meadows-footer-bar.css', __FILE__), false, '1.0.1', 'all');
 }
 
 add_action('wp_enqueue_scripts', 'footer_bar_styles_enqueue');
@@ -83,7 +91,7 @@ function meadows_load_dashicons(){
 }
 add_action('wp_enqueue_scripts', 'meadows_load_dashicons');
 
- // ACF FIELDS AND OPTIONS PAGE
+ // ACF OPTIONS PAGE
 
 if( function_exists('acf_add_options_page') ) {
 	
@@ -95,6 +103,8 @@ if( function_exists('acf_add_options_page') ) {
 		
 }
 
+// ACF FIELDSET
+
 if( function_exists('acf_add_local_field_group') ):
 
     acf_add_local_field_group(array(
@@ -105,6 +115,25 @@ if( function_exists('acf_add_local_field_group') ):
                 'key' => 'field_6310af5cfecb1',
                 'label' => 'Show Bar?',
                 'name' => 'show_bar',
+                'type' => 'true_false',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'message' => '',
+                'default_value' => 1,
+                'ui' => 0,
+                'ui_on_text' => '',
+                'ui_off_text' => '',
+            ),
+            array(
+                'key' => 'field_6311f9fa97c84',
+                'label' => 'Show Close Button?',
+                'name' => 'show_close_button',
                 'type' => 'true_false',
                 'instructions' => '',
                 'required' => 0,
@@ -216,9 +245,7 @@ if( function_exists('acf_add_local_field_group') ):
                         'label' => 'Item Icon',
                         'name' => 'item_icon',
                         'type' => 'text',
-                        'instructions' => 'See list of items at the URL below. You only need to add the part that comes after "dashicon-" -- for example, use "flag" for "dashicons-flag"
-    
-    https://developer.wordpress.org/resource/dashicons/#flag',
+                        'instructions' => 'See list of items <a href="https://developer.wordpress.org/resource/dashicons/#flag" target="_blank">on the WordPress site</a>. You only need to add the part that comes after "dashicon-" -- for example, use "flag" for "dashicons-flag"',
                         'required' => 1,
                         'conditional_logic' => 0,
                         'wrapper' => array(
@@ -228,7 +255,7 @@ if( function_exists('acf_add_local_field_group') ):
                         ),
                         'default_value' => '',
                         'placeholder' => '',
-                        'prepend' => '',
+                        'prepend' => 'dashicons-',
                         'append' => '',
                         'maxlength' => '',
                     ),

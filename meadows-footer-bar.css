@@ -1,3 +1,17 @@
+// Manipulate existing chat layout
+
+#imi-chatbutton {
+	display: none;
+}
+
+@media (min-width: 1400px) {
+	#divchatmain {
+		bottom: 5px;
+	}
+}
+
+// Styling for Footer Bar
+
 .footer-bar-container {
 	position: fixed;
 	bottom: 0;
@@ -11,14 +25,20 @@
 	height: 100%;
 	display: flex;
 	justify-content: space-around;
-	padding: 0.5rem 0;
+	align-items: center;
+	padding: 0.5rem 0 0.25rem;
 	background: white;
     color: black;
 	box-sizing: border-box;
+	border-top: 1px solid;
 }
 
 .footer-bar-inner a {
     text-decoration: none;
+}
+
+.footer-bar-inner a:hover {
+	cursor: pointer;
 }
 
 .footer-bar-item {
@@ -33,7 +53,22 @@
 .footer-bar-item span {
     font-size: 2rem;
     width: 40px;
-    height: 30px;
+    height: 24px;
+}
+
+.footer-bar-close {
+	display: grid;
+	place-items: center;
+	cursor: pointer;
+}
+
+.footer-bar-close:hover {
+	opacity: 0.5;
+}
+
+.footer-bar-close span {
+	display: block;
+	transform: scale(1.5);
 }
 
 @media (min-width: 600px) {
@@ -42,5 +77,11 @@
 	}
 	.footer-bar-inner {
 		border-radius: 0.5rem;
+		border: 1px solid;
+		opacity: 0.8;
+		transition: 0.3s;
+	}
+	.footer-bar-inner:hover {
+		opacity: 1;
 	}
 }
