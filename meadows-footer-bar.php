@@ -3,7 +3,7 @@
 /**
  * Plugin Name:   Meadows Footer Bar
  * Description:   Contact options that appear as a bar at the bottom of pages.
- * Version:           0.1.3
+ * Version:           1.4
  * Requires at least: 5.9.3
  * Requires PHP:  7.4
  * Author:            Astute Communications
@@ -75,7 +75,7 @@ add_action( 'wp_footer', 'show_meadows_bar' );
 
 add_action('init', 'footer_bar_styles');
 function footer_bar_styles() {
-    wp_register_style( 'new_style', plugins_url('./meadows-footer-bar.css', __FILE__), false, '1.0.3', 'all');
+    wp_register_style( 'new_style', plugins_url('./meadows-footer-bar.css', __FILE__), false, '1.4', 'all');
 }
 
 add_action('wp_enqueue_scripts', 'footer_bar_styles_enqueue');

@@ -1,16 +1,4 @@
-// Manipulate existing chat layout
-
-#imi-chatbutton {
-	display: none;
-}
-
-@media (min-width: 1400px) {
-	#divchatmain {
-		bottom: 5px;
-	}
-}
-
-// Styling for Footer Bar
+/* Styling for Footer Bar */
 
 .footer-bar-container {
 	position: fixed;
@@ -34,7 +22,7 @@
 }
 
 .footer-bar-inner a {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .footer-bar-inner a:hover {
@@ -42,7 +30,7 @@
 }
 
 .footer-bar-item {
-    text-align: center;
+	text-align: center;
     text-decoration: none;
     display: flex;
     flex-direction: column;
@@ -51,7 +39,7 @@
 }
 
 .footer-bar-item span {
-    font-size: 2rem;
+	font-size: 2rem;
     width: 40px;
     height: 24px;
 }
@@ -83,5 +71,23 @@
 	}
 	.footer-bar-inner:hover {
 		opacity: 1;
+	}
+}
+
+/* Extra space in the footer */
+
+.site-footer {
+	padding-bottom: 6rem;
+}
+
+/* Manipulate existing chat layout */
+
+#imi-chatbutton {
+	display: none;
+}
+
+@media (min-width: 1400px) {
+	#divchatmain {
+		bottom: 5px;
 	}
 }
