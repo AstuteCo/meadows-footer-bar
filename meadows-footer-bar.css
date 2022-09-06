@@ -83,11 +83,11 @@
 /* Manipulate existing chat layout */
 
 #imi-chatbutton {
-	display: none;
+	display: none !important;
 }
 
 @media (min-width: 1400px) {
 	#divchatmain {
-		bottom: 5px;
+		bottom: 5px !important;
 	}
 }
