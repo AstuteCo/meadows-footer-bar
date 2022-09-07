@@ -1,3 +1,5 @@
+console.log('page initiated')
+console.log(document.querySelector('#divchatmain'))
 if (document.querySelector('#divchatmain')) {
     let chatWindow = document.querySelector('#divchatmain iframe')
     let chatToggle = document.querySelector('#footer-live-chat')
