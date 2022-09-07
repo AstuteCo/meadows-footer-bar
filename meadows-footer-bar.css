@@ -59,7 +59,7 @@
 	transform: scale(1.5);
 }
 
-@media (max-width: 704px) {
+@media (min-width: 704px) {
 	#footer-live-chat.chat-closed .dashicons-dismiss {
 		display: none;
 	}
