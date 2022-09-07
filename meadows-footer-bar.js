@@ -1,7 +1,9 @@
 if (document.querySelector('#footer-live-chat')) {
     let chatToggle = document.querySelector('#footer-live-chat')
     chatToggle.addEventListener('click',function(){
-        chatToggle.classList.toggle('chat-closed')
+        if (window.innerWidth > 703) {
+            chatToggle.classList.toggle('chat-closed')
+        }
         // let chatWindow = document.querySelector('#divchatmain iframe')
         // console.log(chatWindow.ariaHidden)
         // if (!chatWindow.ariaHidden) {
