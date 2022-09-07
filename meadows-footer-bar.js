@@ -1,10 +1,7 @@
-console.log('page initiated')
-console.log(document.querySelector('#divchatmain'))
-if (document.querySelector('#divchatmain')) {
+if (document.querySelector('#divchatmain iframe')) {
     let chatWindow = document.querySelector('#divchatmain iframe')
     let chatToggle = document.querySelector('#footer-live-chat')
-    
-    console.log('chat initiated')
+
 
     chatToggle.addEventListener('click',function(){
         console.log(chatWindow.ariaHidden)
