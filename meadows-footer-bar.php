@@ -91,7 +91,6 @@ function footer_bar_styles_enqueue(){
 
 // FOOTER BAR JS
 
-
 add_action('wp_enqueue_scripts','footer_bar_scripts');
 function footer_bar_scripts() {
     wp_enqueue_script( 'footer-bar-js', plugins_url( './meadows-footer-bar.js', __FILE__ ));
