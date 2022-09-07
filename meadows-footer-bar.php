@@ -42,13 +42,18 @@ function show_meadows_bar() {
 
                 if ($show_item == 'yes') {
                     if ($is_chat == 'yes') {
-                        echo '<a title="' . $item_text . '" onclick="parent.IMIChatInit.chatswitchicon()" id="footer-live-chat">';
+                        echo '<a title="' . $item_text . '" onclick="parent.IMIChatInit.chatswitchicon()" id="footer-live-chat" class="chat-closed">';
                     }
                     else {
                         echo '<a href="' . $item_url . '" title="' . $item_text . '">';
                     }
                     echo '<div class="footer-bar-item">';
-                    echo '<span class="dashicons dashicons-' . $item_icon . '"></span>';
+                    if ($is_chat == 'yes') {
+                        echo '<span class="dashicons dashicons-' . $item_icon . ' chat-icon"></span>';
+                        echo '<span class="dashicons dashicons-dismiss"></span>';
+                    } else {
+                        echo '<span class="dashicons dashicons-' . $item_icon . '"></span>';
+                    }
                     echo '<div style="text-align: center; padding: 0 0.25rem;">' . $item_text . '</div>';
                     echo '</div>';
                     echo '</a>';
@@ -82,6 +87,14 @@ add_action('wp_enqueue_scripts', 'footer_bar_styles_enqueue');
 function footer_bar_styles_enqueue(){
 
    wp_enqueue_style( 'new_style' );
+}
+
+// FOOTER BAR JS
+
+
+add_action('wp_enqueue_scripts','footer_bar_scripts');
+function footer_bar_scripts() {
+    wp_enqueue_script( 'footer-bar-js', plugins_url( './meadows-footer-bar.js', __FILE__ ));
 }
 
 // ENABLE DASHICONS

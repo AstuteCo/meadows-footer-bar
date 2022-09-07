@@ -59,6 +59,14 @@
 	transform: scale(1.5);
 }
 
+#footer-live-chat.chat-closed .dashicons-dismiss {
+	display: none;
+}
+
+#footer-live-chat:not(.chat-closed) .chat-icon {
+	display: none;
+}
+
 @media (min-width: 600px) {
 	.footer-bar-container {
 		padding-bottom: 0.5rem;
