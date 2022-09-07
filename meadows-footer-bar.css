@@ -60,7 +60,7 @@
 }
 
 @media (max-width: 703px) {
-	.dashicons-dismiss {
+	#footer-live-chat .dashicons-dismiss {
 		display: none;
 	}
 }
