@@ -23,6 +23,7 @@
 
 .footer-bar-inner a {
 	text-decoration: none;
+	color: inherit;
 }
 
 .footer-bar-inner a:hover {
