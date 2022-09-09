@@ -14,4 +14,12 @@ if (document.querySelector('#footer-live-chat')) {
             console.log(chatToggle.classList)
         }
     })
+
+    let labels = document.querySelectorAll('.footer-bar-item div')
+    labels.forEach(function(each){
+        let labelText = each.textContent
+        let closestLink = each.closest('a')
+        closestLink.id = `footer-bar-${labelText.toLowerCase().replace(' ','-')}`
+        console.log(closestLink.id)
+    })
 }
