@@ -23,3 +23,10 @@ if (document.querySelector('#footer-live-chat')) {
         console.log(closestLink.id)
     })
 }
+
+if (window.innerWidth > 600) { 
+    let textLinks = document.querySelectorAll('a[href^="sms:"]')
+    textLinks.forEach(function(each){ 
+        each.style.display = 'none' 
+    })
+ }

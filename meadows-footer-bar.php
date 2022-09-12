@@ -3,7 +3,7 @@
 /**
  * Plugin Name:   Meadows Footer Bar
  * Description:   Contact options that appear as a bar at the bottom of pages.
- * Version:           1.20
+ * Version:           1.21
  * Requires at least: 5.9.3
  * Requires PHP:  7.4
  * Author:            Astute Communications
@@ -80,7 +80,7 @@ add_action( 'wp_footer', 'show_meadows_bar' );
 
 add_action('init', 'footer_bar_styles');
 function footer_bar_styles() {
-    wp_register_style( 'new_style', plugins_url('./meadows-footer-bar.css', __FILE__), false, '1.20', 'all');
+    wp_register_style( 'new_style', plugins_url('./meadows-footer-bar.css', __FILE__), false, '1.21', 'all');
 }
 
 add_action('wp_enqueue_scripts', 'footer_bar_styles_enqueue');
@@ -93,7 +93,7 @@ function footer_bar_styles_enqueue(){
 
 add_action('wp_enqueue_scripts','footer_bar_scripts');
 function footer_bar_scripts() {
-    wp_enqueue_script( 'footer-bar-js', plugins_url( './meadows-footer-bar.js', __FILE__ ), false, '1.20', 'all');
+    wp_enqueue_script( 'footer-bar-js', plugins_url( './meadows-footer-bar.js', __FILE__ ), false, '1.21', 'all');
 }
 
 // ENABLE DASHICONS
@@ -148,6 +148,25 @@ if( function_exists('acf_add_local_field_group') ):
                 'name' => 'show_close_button',
                 'type' => 'true_false',
                 'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'message' => '',
+                'default_value' => 1,
+                'ui' => 0,
+                'ui_on_text' => '',
+                'ui_off_text' => '',
+            ),
+            array(
+                'key' => 'field_631f98658fcb9',
+                'label' => 'Hide SMS on Desktop?',
+                'name' => 'hide_sms_desktop',
+                'instructions' => 'If selected, this will hide "Text" option above 600px.',
+                'type' => 'true_false',
                 'required' => 0,
                 'conditional_logic' => 0,
                 'wrapper' => array(
