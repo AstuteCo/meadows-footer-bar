@@ -67,11 +67,11 @@
 }
 
 @media (min-width: 704px) {
-	#footer-live-chat.chat-closed .dashicons-dismiss {
+	#footer-bar-live-chat.chat-closed .dashicons-dismiss {
 		display: none;
 	}
 	
-	#footer-live-chat:not(.chat-closed) .chat-icon {
+	#footer-bar-live-chat:not(.chat-closed) .chat-icon {
 		display: none;
 	}
 }
