@@ -3,7 +3,7 @@
 /**
  * Plugin Name:   Meadows Footer Bar
  * Description:   Contact options that appear as a bar at the bottom of pages.
- * Version:           1.23
+ * Version:           1.24
  * Requires at least: 5.9.3
  * Requires PHP:  7.4
  * Author:            Astute Communications
@@ -21,15 +21,22 @@ function show_meadows_bar() {
     $background_color = get_field('bar_background_color', 'option');
     $text_color = get_field('bar_text_color', 'option');
 
+    // Assume you're going to show it on every page
+    $hide_on_this_page = 0;    
+    // But if the current page's ID is on the list of IDs to exclude it
+    if (in_array(get_the_id(), get_field('exclude_on_pagesposts', 'option'))) {
+        // Set hiding it to true
+        $hide_on_this_page = 1;
+        // See next "if" which only shows if the above value is false
+    }
 
-    if ($show_bar == 'yes') {
+    if (!$hide_on_this_page && $show_bar == 'yes') {
         echo '<div class="footer-bar-container">';
         echo '<div class="footer-bar-inner" 
             style="
             background-color: ' . $background_color . ';
             color: ' . $text_color . ';
             ">';
-
         if( have_rows('bar_items','option') ):
 
             while( have_rows('bar_items','option') ) : the_row();
@@ -213,6 +220,31 @@ if( function_exists('acf_add_local_field_group') ):
                 'default_value' => '#000000',
                 'enable_opacity' => 0,
                 'return_format' => 'string',
+            ),
+            array(
+                'key' => 'field_6399eb6374e99',
+                'label' => 'Exclude on Pages/Posts',
+                'name' => 'exclude_on_pagesposts',
+                'aria-label' => '',
+                'type' => 'post_object',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'post_type' => array(
+                    0 => 'page',
+                    1 => 'post',
+                    2 => 'wpcode',
+                ),
+                'taxonomy' => '',
+                'return_format' => 'id',
+                'multiple' => 1,
+                'allow_null' => 1,
+                'ui' => 1,
             ),
             array(
                 'key' => 'field_6310afa9fecb4',

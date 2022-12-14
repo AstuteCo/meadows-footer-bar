@@ -5,13 +5,13 @@ if (document.querySelector('#footer-live-chat')) {
             let chatWindow = document.querySelector('#divchatmain')
             let chatWindowVisible = chatWindow.style.display
             if (chatWindowVisible === 'none') {
-                console.log('chat closed')
+                // console.log('chat closed')
                 chatToggle.classList.add('chat-closed')
             } else {
-                console.log('chat opened')
+                // console.log('chat opened')
                 chatToggle.classList.remove('chat-closed')
             }
-            console.log(chatToggle.classList)
+            // console.log(chatToggle.classList)
         }
     })
 
@@ -20,7 +20,7 @@ if (document.querySelector('#footer-live-chat')) {
         let labelText = each.textContent
         let closestLink = each.closest('a')
         closestLink.id = `footer-bar-${labelText.toLowerCase().replace(' ','-')}`
-        console.log(closestLink.id)
+        // console.log(closestLink.id)
     })
 }
 
