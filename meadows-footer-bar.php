@@ -3,7 +3,7 @@
 /**
  * Plugin Name:   Meadows Footer Bar
  * Description:   Contact options that appear as a bar at the bottom of pages.
- * Version:           1.24
+ * Version:           1.25
  * Requires at least: 5.9.3
  * Requires PHP:  7.4
  * Author:            Astute Communications
@@ -22,12 +22,15 @@ function show_meadows_bar() {
     $text_color = get_field('bar_text_color', 'option');
 
     // Assume you're going to show it on every page
-    $hide_on_this_page = 0;    
-    // But if the current page's ID is on the list of IDs to exclude it
-    if (in_array(get_the_id(), get_field('exclude_on_pagesposts', 'option'))) {
-        // Set hiding it to true
-        $hide_on_this_page = 1;
-        // See next "if" which only shows if the above value is false
+    $hide_on_this_page = 0;
+    // Run this check only if the list of pages is a list of pages
+    if (is_array(get_field('exclude_on_pagesposts', 'option'))) {
+        // But if the current page's ID is on the list of IDs to exclude it
+        if (in_array(get_the_id(), get_field('exclude_on_pagesposts', 'option'))) {
+            // Set hiding it to true
+            $hide_on_this_page = 1;
+            // See next "if" which only shows if the above value is false
+        }
     }
 
     if (!$hide_on_this_page && $show_bar == 'yes') {
