@@ -1,0 +1,9 @@
+{
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#fff",
+        "titleBar.inactiveBackground": "#ffffffcc",
+        "titleBar.activeForeground": "#e38e61",
+        "titleBar.inactiveForeground": "#e38e61cc"
+    },
+    "window.title": "The Meadows Footer Bar Plugin"
+}
