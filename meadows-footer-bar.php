@@ -3,7 +3,7 @@
 /**
  * Plugin Name:   Meadows Footer Bar
  * Description:   Contact options that appear as a bar at the bottom of pages.
- * Version:           1.31
+ * Version:           1.32
  * Requires at least: 5.9.3
  * Requires PHP:  7.4
  * Author:            Astute Communications
