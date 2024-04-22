@@ -14,6 +14,22 @@
 
 // RENDER FOOTER BAR
 
+function add_custom_body_class($classes) {
+    $hide_on_this_page = 0;
+    if (is_array(get_field('exclude_on_pagesposts', 'option'))) {
+        if (in_array(get_the_id(), get_field('exclude_on_pagesposts', 'option'))) {
+            $hide_on_this_page = 1;
+        }
+    }
+
+    if (!$hide_on_this_page && get_field('show_bar', 'option') == 'yes') {
+        $classes[] = 'has-footer-bar';
+    }
+
+    return $classes;
+}
+add_filter('body_class', 'add_custom_body_class');
+
 function show_meadows_bar() {
 	wp_reset_postdata();
     $show_bar = get_field('show_bar', 'option');
